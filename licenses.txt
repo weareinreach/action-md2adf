@@ -1,4 +1,7 @@
-The following NPM packages may be included in this product:
+This file was generated with the generate-license-file npm package!
+https://www.npmjs.com/package/generate-license-file
+
+The following npm packages may be included in this product:
 
  - @actions/core@1.10.0
  - @actions/github@5.1.1
@@ -17,7 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -----------
 
-The following NPM package may be included in this product:
+The following npm package may be included in this product:
 
  - @atlaskit/editor-markdown-transformer@4.2.16
 
@@ -39,4 +42,5 @@ limitations under the License.
 
 -----------
 
-This file was generated with generate-license-file! https://www.npmjs.com/package/generate-license-file
+This file was generated with the generate-license-file npm package!
+https://www.npmjs.com/package/generate-license-file
