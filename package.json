@@ -1,7 +1,7 @@
 {
-	"name": "action-md2adf",
+	"name": "@inreach/action-md2adf",
 	"version": "1.0.0",
-	"description": "",
+	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "ncc build src/index.ts --license licenses.txt",
@@ -13,7 +13,7 @@
 		"Jira",
 		"adf"
 	],
-	"author": "",
+	"author": "@JoeKarow",
 	"license": "ISC",
 	"dependencies": {
 		"@actions/core": "^1.10.0",
