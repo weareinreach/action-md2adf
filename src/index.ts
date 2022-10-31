@@ -1,4 +1,5 @@
-import { MarkdownTransformer } from '@atlaskit/editor-markdown-transformer'
+// import { MarkdownTransformer } from '@atlaskit/editor-markdown-transformer'
+import fnTranslate from 'md-to-adf'
 import {
 	setOutput,
 	info as logInfo,
@@ -7,15 +8,17 @@ import {
 } from '@actions/core'
 import { context } from '@actions/github'
 import type { IssuesOpenedEvent } from '@octokit/webhooks-definitions/schema'
-const transformer = new MarkdownTransformer()
+// const transformer = new MarkdownTransformer()
 
-const md2adf = (markdown: string) => {
-	return transformer.parse(markdown)
+export const md2adf = (markdown: string) => {
+	return fnTranslate(markdown)
 }
 
 try {
-	const payload = context.payload as IssuesOpenedEvent
-	const jiraBody = `${payload.issue.html_url}\n\n${payload.issue.body}`
+	const payload = context.payload // as IssuesOpenedEvent
+	const jiraBody = `${payload.issue.html_url as string}\n\n${
+		payload.issue.body as string
+	}`
 	const adf = md2adf(jiraBody)
 
 	setOutput('adf', adf)

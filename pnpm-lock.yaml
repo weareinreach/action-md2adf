@@ -8,12 +8,14 @@ specifiers:
   '@vercel/ncc': ^0.34.0
   eslint: ^8.19.0
   generate-license-file: ^2.0.0
+  md-to-adf: ^0.6.4
   typescript: ^4.8.4
 
 dependencies:
   '@actions/core': 1.10.0
   '@actions/github': 5.1.1
   '@atlaskit/editor-markdown-transformer': 4.2.16_typescript@4.8.4
+  md-to-adf: 0.6.4
 
 devDependencies:
   '@octokit/webhooks-definitions': 3.67.3
@@ -2047,6 +2049,11 @@ packages:
     hasBin: true
     dev: true
 
+  /adf-builder/3.3.0:
+    resolution: {integrity: sha512-zl5Sk2HtJk/E+gBnD0g51w5wIEEujaAbzsBhSsteO8Fnef7v+7pvas0FeQuLCAgOxrwy945HWAB1gQ4yjPI3/g==}
+    deprecated: Use @atlaskit/adf-utils instead
+    dev: false
+
   /ajv-keywords/3.5.2_ajv@6.12.6:
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
     peerDependencies:
@@ -3121,6 +3128,19 @@ packages:
       linkify-it: 4.0.1
       mdurl: 1.0.1
       uc.micro: 1.0.6
+    dev: false
+
+  /marked/0.8.2:
+    resolution: {integrity: sha512-EGwzEeCcLniFX51DhTpmTom+dSA/MG/OBUDjnWtHbEnjAH180VzUeAw+oE4+Zv+CoYBWyRlYOTR0N8SO9R1PVw==}
+    engines: {node: '>= 8.16.2'}
+    hasBin: true
+    dev: false
+
+  /md-to-adf/0.6.4:
+    resolution: {integrity: sha512-MynWm2w+adyzeaCJGXoOjgHAAhql0I9jR2Bq55hM7GQ05u6cGX7jThdWN6dgVSGnBmuAGmZGy2rDGBP+hJRckA==}
+    dependencies:
+      adf-builder: 3.3.0
+      marked: 0.8.2
     dev: false
 
   /mdurl/1.0.1:

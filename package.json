@@ -18,13 +18,14 @@
 	"dependencies": {
 		"@actions/core": "^1.10.0",
 		"@actions/github": "^5.1.1",
-		"@atlaskit/editor-markdown-transformer": "^4.2.16"
+		"@atlaskit/editor-markdown-transformer": "^4.2.16",
+		"md-to-adf": "^0.6.4"
 	},
 	"devDependencies": {
 		"@octokit/webhooks-definitions": "^3.67.3",
-		"typescript": "^4.8.4",
 		"@vercel/ncc": "^0.34.0",
 		"eslint": "^8.19.0",
-		"generate-license-file": "^2.0.0"
+		"generate-license-file": "^2.0.0",
+		"typescript": "^4.8.4"
 	}
 }
