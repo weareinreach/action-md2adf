@@ -4,7 +4,7 @@
 	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "ncc build src/index.ts --license licenses.txt",
+		"build": "ncc build src/index.ts --license licenses.txt -m -e @atlaskit/analytics-listeners -e @atlaskit/button -e @atlaskit/media-picker -e @atlaskit/code -e @atlaskit/emoji -e @atlaskit/media-card -e @atlaskit/media-picker -e @atlaskit/mention -e @atlaskit/profilecard -e @atlaskit/smart-card -e @atlaskit/smart-user-picker -e @atlaskit/task-decision -e cypress-file-upload",
 		"license": "generate-license-file --input package.json --output licenses.txt --overwrite",
 		"dist": "pnpm license && pnpm build"
 	},
