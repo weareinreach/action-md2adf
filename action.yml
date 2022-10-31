@@ -1,0 +1,15 @@
+name: GitHub Issue MD to ADF
+description: Convert GitHub issue body markdown to Atlassian Document Format
+author: Joe Karow
+
+outputs:
+  adf:
+    description: ADF object
+
+runs:
+  using: node16
+  main: 'dist/index.js'
+
+branding:
+  icon: package
+  color: blue
