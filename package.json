@@ -1,5 +1,5 @@
 {
-	"name": "@weareinreach/action-md2adf",
+	"name": "@weareinreach/action-create-jira-issue",
 	"version": "1.0.0",
 	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
