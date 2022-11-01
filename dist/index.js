@@ -30317,18 +30317,23 @@ const config = (0,dist/* parse */.Qc)((0,external_fs_.readFileSync)(configPath, 
 const { baseUrl, token, email } = config;
 const authString = Buffer.from(`${email}:${token}`).toString('base64');
 const createJiraIssue = async (body) => {
-    const issue = await fetch(`${baseUrl}/rest/api/3/issue`, {
-        method: 'post',
-        body: JSON.stringify(body),
-        headers: {
-            Authorization: `Basic ${authString}`,
-        },
-        // auth: {
-        // 	username: email,
-        // 	password: token,
-        // },
-    });
-    return issue;
+    try {
+        const issue = await fetch(`${baseUrl}/rest/api/3/issue`, {
+            method: 'post',
+            body: JSON.stringify(body),
+            headers: {
+                Authorization: `Basic ${authString}`,
+            },
+            // auth: {
+            // 	username: email,
+            // 	password: token,
+            // },
+        });
+        return issue;
+    }
+    catch (err) {
+        console.error(err);
+    }
 };
 
 ;// CONCATENATED MODULE: ./src/index.ts

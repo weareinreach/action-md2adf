@@ -12,18 +12,22 @@ const { baseUrl, token, email } = config
 const authString = Buffer.from(`${email}:${token}`).toString('base64')
 
 export const createJiraIssue = async (body: JiraCreateIssue) => {
-	const issue = await fetch(`${baseUrl}/rest/api/3/issue`, {
-		method: 'post',
-		body: JSON.stringify(body),
-		headers: {
-			Authorization: `Basic ${authString}`,
-		},
-		// auth: {
-		// 	username: email,
-		// 	password: token,
-		// },
-	})
-	return issue
+	try {
+		const issue = await fetch(`${baseUrl}/rest/api/3/issue`, {
+			method: 'post',
+			body: JSON.stringify(body),
+			headers: {
+				Authorization: `Basic ${authString}`,
+			},
+			// auth: {
+			// 	username: email,
+			// 	password: token,
+			// },
+		})
+		return issue
+	} catch (err) {
+		console.error(err)
+	}
 }
 
 export type JiraCreateIssue = {
