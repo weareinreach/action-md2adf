@@ -21,7 +21,7 @@ try {
 	}`
 	const adf = md2adf(jiraBody)
 
-	setOutput('adf', adf)
+	setOutput('adf', JSON.stringify(adf))
 	logInfo('Issue body converted')
 } catch (error) {
 	if (error instanceof Error) {
