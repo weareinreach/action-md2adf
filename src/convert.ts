@@ -18,7 +18,7 @@ export async function gfm2adf(markdown: string) {
 		// html2adf(html).then((x) => {
 		// 	adf = x
 		// })
-		return await adf
+		return await JSON.parse(adf)
 	} catch (err) {
 		console.error(err)
 	}

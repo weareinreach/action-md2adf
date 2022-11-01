@@ -28172,7 +28172,7 @@ async function gfm2adf(markdown) {
         // html2adf(html).then((x) => {
         // 	adf = x
         // })
-        return await adf;
+        return await JSON.parse(adf);
     }
     catch (err) {
         console.error(err);
@@ -30327,6 +30327,8 @@ const createJiraIssue = async (body) => {
             body: JSON.stringify(body),
             headers: {
                 Authorization: `Basic ${authString}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
             // auth: {
             // 	username: email,
@@ -30346,34 +30348,39 @@ const createJiraIssue = async (body) => {
 
 
 const issueCreator = async (payload) => {
-    const project = (0,core.getInput)('project');
-    const issuetype = (0,core.getInput)('issuetype');
-    const summary = (0,core.getInput)('summary') ?? payload.issue.title;
-    const fields = (0,core.getInput)('fields') ?? {};
-    if (!project || !issuetype) {
-        throw 'project & issuetype required!';
-    }
-    const jiraBody = `${payload.issue.html_url}\n\n${payload.issue.body}`;
-    const adf = await gfm2adf(jiraBody);
-    const issuePayload = {
-        fields: {
-            issuetype: {
-                name: issuetype,
+    try {
+        const project = (0,core.getInput)('project');
+        const issuetype = (0,core.getInput)('issuetype');
+        const summary = (0,core.getInput)('summary') || payload.issue.title;
+        const fields = (0,core.getInput)('fields') || {};
+        if (!project || !issuetype) {
+            throw 'project & issuetype required!';
+        }
+        const jiraBody = `${payload.issue.html_url}\n\n${payload.issue.body}`;
+        const adf = await gfm2adf(jiraBody);
+        const issuePayload = {
+            fields: {
+                issuetype: {
+                    name: issuetype,
+                },
+                project: {
+                    key: project,
+                },
+                summary,
+                description: adf,
+                ...fields,
             },
-            project: {
-                key: project,
-            },
-            summary,
-            description: adf,
-            ...fields,
-        },
-    };
-    const newIssue = await createJiraIssue(issuePayload);
-    if (newIssue.status === 201) {
-        (0,core.info)(JSON.stringify(newIssue.json, null, 2));
+        };
+        const newIssue = await createJiraIssue(issuePayload);
+        if (newIssue.status === 201) {
+            (0,core.info)(JSON.stringify(newIssue.json, null, 2));
+        }
+        else
+            throw { status: newIssue.status, text: newIssue.statusText };
     }
-    else
-        throw newIssue.statusText;
+    catch (err) {
+        console.error(err);
+    }
 };
 try {
     const payload = github.context.payload;

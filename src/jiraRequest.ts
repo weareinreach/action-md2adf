@@ -18,6 +18,8 @@ export const createJiraIssue = async (body: JiraCreateIssue) => {
 			body: JSON.stringify(body),
 			headers: {
 				Authorization: `Basic ${authString}`,
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
 			},
 			// auth: {
 			// 	username: email,
