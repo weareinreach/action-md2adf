@@ -5,8 +5,8 @@ import {
 	setFailed,
 } from '@actions/core'
 import { context } from '@actions/github'
-import { gfm2adf } from './convert'
-import { createJiraIssue, type JiraCreateIssue } from './jiraRequest'
+import { gfm2adf } from './convert.js'
+import { createJiraIssue, type JiraCreateIssue } from './jiraRequest.js'
 
 const issueCreator = async (payload: JiraCreateIssue) => {
 	const newIssue = await createJiraIssue(payload)
