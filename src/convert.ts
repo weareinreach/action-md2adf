@@ -7,9 +7,13 @@ const sdConvert = new showdown.Converter()
 export async function gfm2adf(markdown: string) {
 	try {
 		const html = sdConvert.makeHtml(markdown)
-		const adf = await init().then(() => {
-			return convert(html)
-		})
+		const adf = await init()
+			.then(() => {
+				return convert(html)
+			})
+			.catch((err) => {
+				throw err
+			})
 		// 	.then((x) => x)
 		// html2adf(html).then((x) => {
 		// 	adf = x

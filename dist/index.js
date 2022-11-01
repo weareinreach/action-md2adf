@@ -28161,8 +28161,12 @@ const sdConvert = new (showdown_default()).Converter();
 async function gfm2adf(markdown) {
     try {
         const html = sdConvert.makeHtml(markdown);
-        const adf = await htmltoadf().then(() => {
+        const adf = await htmltoadf()
+            .then(() => {
             return convert(html);
+        })
+            .catch((err) => {
+            throw err;
         });
         // 	.then((x) => x)
         // html2adf(html).then((x) => {
