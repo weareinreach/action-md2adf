@@ -1,0 +1,3 @@
+[submodule "htmltoadf"]
+	path = htmltoadf
+	url = https://github.com/wouterken/htmltoadf.git

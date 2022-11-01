@@ -3,8 +3,9 @@
 	"version": "1.0.0",
 	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
+	"type": "module",
 	"scripts": {
-		"build": "ncc build src/index.ts --license licenses.txt -m -e @atlaskit/analytics-listeners -e @atlaskit/button -e @atlaskit/media-picker -e @atlaskit/code -e @atlaskit/emoji -e @atlaskit/media-card -e @atlaskit/media-picker -e @atlaskit/mention -e @atlaskit/profilecard -e @atlaskit/smart-card -e @atlaskit/smart-user-picker -e @atlaskit/task-decision -e cypress-file-upload",
+		"build": "ncc build src/index.ts --license licenses.txt -m",
 		"license": "generate-license-file --input package.json --output licenses.txt --overwrite",
 		"dist": "pnpm license && pnpm build"
 	},
@@ -18,11 +19,17 @@
 	"dependencies": {
 		"@actions/core": "^1.10.0",
 		"@actions/github": "^5.1.1",
-		"@atlaskit/editor-markdown-transformer": "^4.2.16",
-		"md-to-adf": "^0.6.4"
+		"axios": "^1.1.3",
+		"ffi-napi": "^4.0.3",
+		"htmltoadf": "^0.1.6",
+		"showdown": "^2.1.0",
+		"yaml": "^2.1.3"
 	},
 	"devDependencies": {
-		"@octokit/webhooks-definitions": "^3.67.3",
+		"@octokit/webhooks-schemas": "^6.7.0",
+		"@octokit/webhooks-types": "^6.7.0",
+		"@types/ffi-napi": "^4.0.6",
+		"@types/showdown": "^2.0.0",
 		"@vercel/ncc": "^0.34.0",
 		"eslint": "^8.19.0",
 		"generate-license-file": "^2.0.0",

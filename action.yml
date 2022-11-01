@@ -1,15 +1,28 @@
-name: GitHub Issue MD to ADF
-description: Convert GitHub issue body markdown to Atlassian Document Format
+name: Create Jira Issue
+description: Creates Jira issue from GitHub issue, using ADF for issue body.
 author: Joe Karow
 
-outputs:
-  adf:
-    description: ADF object
+inputs:
+  project:
+    description: Key of the project
+    required: true
+  issuetype:
+    description: "Type of the issue to be created. Example: 'Incident'"
+    required: true
+  summary:
+    description: Issue summary (will default to GH Issue title)
+    required: false
+  description:
+    description: Issue description
+    required: false
+  fields:
+    description: Additional fields in JSON format
+    required: false
 
 runs:
   using: node16
   main: 'dist/index.js'
 
 branding:
-  icon: package
+  icon: check-circle
   color: blue
