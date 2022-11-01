@@ -1,17 +1,21 @@
 import showdown from 'showdown'
-import ffiNapi from 'ffi-napi'
+import init, { convert } from './htmltoadf/htmltoadf.js'
 
 showdown.setFlavor('github')
 const sdConvert = new showdown.Converter()
 
-const htmltoadf = ffiNapi.Library('./dist/libhtmltoadf', {
-	convert: ['string', ['string']],
-})
-
-export const gfm2adf = (markdown: string) => {
-	const html = sdConvert.makeHtml(markdown)
-	const adf = htmltoadf.convert(html)
-	return JSON.parse(adf)
+export async function gfm2adf(markdown: string) {
+	try {
+		const html = sdConvert.makeHtml(markdown)
+		const adf = await init().then(() => {
+			return convert(html)
+		})
+		// 	.then((x) => x)
+		// html2adf(html).then((x) => {
+		// 	adf = x
+		// })
+		return await adf
+	} catch (err) {
+		console.error(err)
+	}
 }
-
-console.log(gfm2adf('**test**'))

@@ -5,8 +5,8 @@ import {
 	setFailed,
 } from '@actions/core'
 import { context } from '@actions/github'
-import { gfm2adf } from './convert2.js'
-import { createJiraIssue, type JiraCreateIssue } from './jiraRequest.js'
+import { gfm2adf } from './convert'
+import { createJiraIssue, type JiraCreateIssue } from './jiraRequest'
 
 type GithubContext = typeof context
 

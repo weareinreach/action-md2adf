@@ -28076,7 +28076,7 @@ function getInt32Memory0() {
  * @param {string} html
  * @returns {string}
  */
-function htmltoadf_convert(html) {
+function convert(html) {
 	try {
 		const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
 		var ptr0 = passStringToWasm0(
@@ -28125,7 +28125,7 @@ async function load(module, imports) {
 	}
 }
 
-async function htmltoadf_init(input) {
+async function init(input) {
 	if (typeof input === 'undefined') {
 		input = __nccwpck_require__.ab + "htmltoadf_bg.wasm"
 	}
@@ -28146,35 +28146,33 @@ async function htmltoadf_init(input) {
 	const { instance, module } = await load(await input, imports)
 
 	wasm = instance.exports
-	htmltoadf_init.__wbindgen_wasm_module = module
+	init.__wbindgen_wasm_module = module
 
 	return wasm
 }
 
-/* harmony default export */ const htmltoadf = (htmltoadf_init);
+/* harmony default export */ const htmltoadf = (init);
 
-;// CONCATENATED MODULE: ./src/convert2.ts
+;// CONCATENATED MODULE: ./src/convert.ts
 
 
 showdown_default().setFlavor('github');
 const sdConvert = new (showdown_default()).Converter();
-// const htmltoadf = ffiNapi.Library('./dist/libhtmltoadf', {
-// 	convert: ['string', ['string']],
-// })
-const html2adf = async (html) => {
-    return await Promise.resolve(init().then(() => convert(html)));
-};
 async function gfm2adf(markdown) {
-    const html = sdConvert.makeHtml(markdown);
-    console.log(html);
-    const adf = htmltoadf().then(() => {
-        return htmltoadf_convert(html);
-    });
-    // 	.then((x) => x)
-    // html2adf(html).then((x) => {
-    // 	adf = x
-    // })
-    return await adf;
+    try {
+        const html = sdConvert.makeHtml(markdown);
+        const adf = await htmltoadf().then(() => {
+            return convert(html);
+        });
+        // 	.then((x) => x)
+        // html2adf(html).then((x) => {
+        // 	adf = x
+        // })
+        return await adf;
+    }
+    catch (err) {
+        console.error(err);
+    }
 }
 
 // EXTERNAL MODULE: ./node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/index.js
