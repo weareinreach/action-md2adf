@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
-	"type": "module",
 	"scripts": {
 		"build": "ncc build src/index.ts --license licenses.txt -m",
 		"license": "generate-license-file --input package.json --output licenses.txt --overwrite",
