@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { parse } from 'yaml'
 import axios from 'axios'
 
-const cliConfigPath = `${process.env.HOME}/.jira.d/config.yml`
+// const cliConfigPath = `${process.env.HOME}/.jira.d/config.yml`
 const configPath = `${process.env.HOME}/jira/config.yml`
 
 const config = parse(readFileSync(configPath, 'utf8'))

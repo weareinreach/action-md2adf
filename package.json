@@ -4,7 +4,7 @@
 	"description": "GitHub action to convert GitHub issue body markdown to Atlassian Document Format",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "ncc build src/index.ts --license licenses.txt -m",
+		"build": "rm -fr ./dist && ncc build src/index.ts --license licenses.txt -m",
 		"license": "generate-license-file --input package.json --output licenses.txt --overwrite",
 		"dist": "pnpm license && pnpm build"
 	},
