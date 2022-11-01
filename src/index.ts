@@ -5,18 +5,12 @@ import {
 	setFailed,
 } from '@actions/core'
 import { context } from '@actions/github'
-import { gfm2adf } from './convert.js'
+import { gfm2adf } from './convert2.js'
 import { createJiraIssue, type JiraCreateIssue } from './jiraRequest.js'
 
-const issueCreator = async (payload: JiraCreateIssue) => {
-	const newIssue = await createJiraIssue(payload)
-	if ((newIssue.status = 201)) {
-		logInfo(newIssue.data)
-	} else throw newIssue.statusText
-}
+type GithubContext = typeof context
 
-try {
-	const payload = context.payload
+const issueCreator = async (payload: GithubContext['payload']) => {
 	const project = getInput('project')
 	const issuetype = getInput('issuetype')
 	const summary = getInput('summary') ?? payload.issue.title
@@ -29,8 +23,7 @@ try {
 	const jiraBody = `${payload.issue.html_url as string}\n\n${
 		payload.issue.body as string
 	}`
-	const adf = gfm2adf(jiraBody)
-
+	const adf = await gfm2adf(jiraBody)
 	const issuePayload: JiraCreateIssue = {
 		fields: {
 			issuetype: {
@@ -45,7 +38,16 @@ try {
 		},
 	}
 
-	issueCreator(issuePayload)
+	const newIssue = await createJiraIssue(issuePayload)
+	if (newIssue.status === 201) {
+		logInfo(JSON.stringify(newIssue.json, null, 2))
+	} else throw newIssue.statusText
+}
+
+try {
+	const payload = context.payload
+
+	issueCreator(payload)
 } catch (error) {
 	if (error instanceof Error) {
 		logError(error.message)
