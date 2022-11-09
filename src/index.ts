@@ -21,10 +21,20 @@ const issueCreator = async (payload: GithubContext['payload']) => {
 			throw 'project & issuetype required!'
 		}
 
-		const jiraBody = `${payload.issue.html_url as string}\n\n${
-			payload.issue.body as string
-		}`
+		const jiraBody = `\n\n${payload.issue.body as string}`
 		const adf = await gfm2adf(jiraBody)
+		// Add Github Link Card to top
+		adf.content.unshift({
+			type: 'paragraph',
+			content: [
+				{
+					type: 'inlineCard',
+					attrs: {
+						url: payload.issue.html_url,
+					},
+				},
+			],
+		})
 		const issuePayload: JiraCreateIssue = {
 			fields: {
 				issuetype: {

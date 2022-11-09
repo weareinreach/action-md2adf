@@ -1,8 +1,9 @@
 import showdown from 'showdown'
 import init, { convert } from './htmltoadf/htmltoadf.js'
 
-showdown.setFlavor('github')
 const sdConvert = new showdown.Converter()
+sdConvert.setFlavor('github')
+sdConvert.setOption('ghMentionsLink', true)
 
 export async function gfm2adf(markdown: string) {
 	try {

@@ -28156,8 +28156,9 @@ async function init(input) {
 ;// CONCATENATED MODULE: ./src/convert.ts
 
 
-showdown_default().setFlavor('github');
 const sdConvert = new (showdown_default()).Converter();
+sdConvert.setFlavor('github');
+sdConvert.setOption('ghMentionsLink', true);
 async function gfm2adf(markdown) {
     try {
         const html = sdConvert.makeHtml(markdown);
@@ -30356,8 +30357,20 @@ const issueCreator = async (payload) => {
         if (!project || !issuetype) {
             throw 'project & issuetype required!';
         }
-        const jiraBody = `${payload.issue.html_url}\n\n${payload.issue.body}`;
+        const jiraBody = `\n\n${payload.issue.body}`;
         const adf = await gfm2adf(jiraBody);
+        // Add Github Link Card to top
+        adf.content.unshift({
+            type: 'paragraph',
+            content: [
+                {
+                    type: 'inlineCard',
+                    attrs: {
+                        url: payload.issue.html_url,
+                    },
+                },
+            ],
+        });
         const issuePayload = {
             fields: {
                 issuetype: {
