@@ -16,7 +16,7 @@ specifiers:
   node-fetch: 3.3.0
   showdown: 2.1.0
   typescript: 4.9.5
-  yaml: 2.2.1
+  yaml: 2.2.2
 
 dependencies:
   '@actions/core': 1.10.0
@@ -26,7 +26,7 @@ dependencies:
   htmltoadf: 0.1.6
   node-fetch: 3.3.0
   showdown: 2.1.0
-  yaml: 2.2.1
+  yaml: 2.2.2
 
 devDependencies:
   '@octokit/webhooks-schemas': 6.10.0
@@ -480,6 +480,7 @@ packages:
 
   /debuglog/1.0.1:
     resolution: {integrity: sha512-syBZ+rnAK3EgMsH2aYEOLUW7mZSY9Gb+0wUMCFsZvcmiz+HigA0LOcq/HoQqVuGG+EKykunc7QG2bzrponfaSw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     dev: true
 
   /deep-is/0.1.4:
@@ -1513,8 +1514,8 @@ packages:
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  /yaml/2.2.1:
-    resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
+  /yaml/2.2.2:
+    resolution: {integrity: sha512-CBKFWExMn46Foo4cldiChEzn7S7SRV+wqiluAb6xmueD/fGyRHIhX8m14vVGgeFWjN540nKCNVj6P21eQjgTuA==}
     engines: {node: '>= 14'}
     dev: false
 
