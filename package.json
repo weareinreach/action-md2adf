@@ -24,7 +24,7 @@
 		"htmltoadf": "0.1.6",
 		"node-fetch": "3.3.0",
 		"showdown": "2.1.0",
-		"yaml": "2.2.1"
+		"yaml": "2.2.2"
 	},
 	"devDependencies": {
 		"@octokit/webhooks-schemas": "6.10.0",
